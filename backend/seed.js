@@ -22,14 +22,14 @@ async function run() {
   }
   if (!await Campaign.exists({ code: 'DDUGKY-GSA' })) {
     await Campaign.create({
-      title: 'Guest Service Associate (Food & Beverage)',
-      code: 'DDUGKY-GSA', department: 'Hotel Management & Hospitality',
-      location: 'Kolkata, West Bengal',
-      description: 'Four-month hospitality-focused training programme based on the supplied Deen Dayal Upadhyaya Grameen Kaushalya Yojana (DDU-GKY) brochure. The training includes career guidance and placement assistance. Organizer details and eligibility must be confirmed before publishing.',
+      title: 'Deen Dayal Upadhyaya Grameen Kaushalya Yojana (DDU-GKY)',
+      code: 'DDUGKY-GSA', department: 'Skill Development & Placement',
+      location: 'Narula Educational Trust, 56 Jessore Road, Patipukur, Kolkata - 700048',
+      description: 'Deen Dayal Upadhyaya Grameen Kaushalya Yojana (DDU-GKY) skill development programme with free training, hostel, food, courseware, uniforms and placement assistance through the Narula Educational Trust training centre.',
       minAge: 18, maxAge: 30, qualification: 'Class XII passed', duration: '4 months',
-      benefits: ['Free training', 'Hostel facilities', 'Meals during training', 'Placement assistance'],
+      benefits: ['100% free skill development training.', 'Free hostel accommodation.', 'Free food facilities.', 'Free courseware & uniforms.', '100% placement assistance.', 'Training duration: 4 months.'],
       memorandumTitle: 'Admission & Recruitment Memorandum',
-      memorandumSummary: 'This memorandum describes the admission process for Guest Service Associate (Food & Beverage) training. Registration is subject to the published application dates and eligibility verification.',
+      memorandumSummary: 'This memorandum describes the admission process for the Deen Dayal Upadhyaya Grameen Kaushalya Yojana (DDU-GKY) programme conducted through Narula Educational Trust, 56 Jessore Road, Patipukur, Kolkata - 700048. Registration is subject to the published application dates and eligibility verification.',
       memorandumInstructions: 'Keep Aadhaar, age proof/birth certificate, passport-size photo, educational certificate, bank passbook and applicable eligibility documents ready for the verification stage.',
       published: false, opensAt: '', closesAt: ''
     });

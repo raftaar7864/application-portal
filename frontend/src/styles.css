@@ -98,3 +98,56 @@ html[lang="bn"] .outreach-copy h2 {line-height:1.5;}
 .hero-scheme span{max-width:100%;overflow-wrap:anywhere}
 .footer-main .footer-scheme{color:#bfcdeb;font-size:11px;line-height:1.55;margin:10px 0 0}
 .footer-scheme strong{color:#ffdd77}
+
+
+/* V4.4 content and mobile refinement */
+.hero-logo-row{display:flex;align-items:stretch;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.hero-logo-card{display:flex;align-items:center;justify-content:center;flex:1 1 165px;min-height:94px;background:rgba(255,255,255,.95);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:12px 14px;box-shadow:0 14px 28px rgba(5,14,39,.16)}
+.hero-logo-card img{display:block;max-width:100%;max-height:68px;object-fit:contain}
+.programme-summary-card{display:grid;gap:14px;margin:0 0 24px;padding:16px 18px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(4px)}
+.programme-summary-line{display:grid;grid-template-columns:140px minmax(0,1fr);align-items:start;gap:12px}
+.summary-label{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#ffe189}
+.summary-block strong,.programme-summary-line strong{display:block;font-size:15px;line-height:1.45;color:#fff}
+.summary-block small{display:block;margin-top:4px;font-size:12px;line-height:1.55;color:#d7e2fb}
+.benefits-grid-extended{grid-template-columns:repeat(2,minmax(0,1fr))}
+.training-centre-panel{display:flex;flex-direction:column;gap:4px;margin:0 0 26px;padding:16px 18px;border-radius:14px;border:1px solid #dce4f3;background:#f7faff}
+.training-centre-panel strong{font-size:17px;color:#1d2d56}
+.training-centre-panel small{font-size:13px;line-height:1.6;color:#60728f}
+@media(max-width:940px){.programme-summary-line{grid-template-columns:1fr}.hero-logo-card{min-height:88px}.hero-logo-card img{max-height:60px}}
+@media(max-width:700px){.top-strip{padding:8px 15px}.nav-inner{gap:10px}.hero-logo-row{gap:10px}.hero-logo-card{flex:1 1 calc(50% - 5px);min-width:0;min-height:82px;padding:10px}.hero-logo-card img{max-height:54px}.programme-summary-card{padding:14px}.summary-block strong,.programme-summary-line strong{font-size:14px}.summary-block small{font-size:11px}.hero-art{padding:0 12px}.hero-image-frame{width:min(100%,320px)}.hero-image-frame>img{height:325px}.floating-note{left:12px;right:12px;bottom:14px;min-width:0;width:auto}.benefits-grid-extended{grid-template-columns:1fr}.feature-split h2{font-size:28px}.training-centre-panel{padding:14px}.training-centre-panel strong{font-size:16px}}
+
+
+/* V4.5 - Original JIS and Narula Educational Trust logos in header & footer */
+.brand{gap:12px;min-width:0}
+.brand-logos{display:flex;align-items:center;gap:7px;flex-shrink:0;line-height:0}
+.brand-logo-frame{display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#fff;border:1px solid #e5eaf4;border-radius:9px;overflow:hidden;box-shadow:0 1px 6px rgba(20,37,75,.06)}
+.brand-logo-narula{width:74px;height:55px;padding:3px}
+.brand-logo-jis{width:55px;height:55px;padding:3px}
+.brand-logo-frame img{display:block;width:100%;height:100%;object-fit:contain}
+.brand .brand-label{min-width:0}
+.brand .brand-label strong{font-size:14px;line-height:1.18}
+.brand .brand-label small{font-size:10px;letter-spacing:.04em}
+.brand-inverse .brand-logo-frame{background:#fff;border-color:rgba(255,255,255,.24);box-shadow:none}
+.footer-about .brand{align-items:center;gap:15px}
+.footer-about .brand-logo-narula{width:94px;height:70px;padding:4px}
+.footer-about .brand-logo-jis{width:70px;height:70px;padding:4px}
+.footer-about .brand .brand-label strong{font-size:16px;color:#fff}
+.footer-about .brand .brand-label small{font-size:11px;color:#c4d0e5}
+@media(max-width:1180px){.nav-inner{gap:12px}.brand{gap:8px}.nav-links{gap:12px}.nav-actions{gap:9px}}
+@media(max-width:1080px) and (min-width:941px){.site-header .brand-label{display:none}}
+@media(max-width:700px){
+  .site-header .brand-label{display:none}
+  .site-header .brand-logo-narula{width:65px;height:48px;padding:3px}
+  .site-header .brand-logo-jis{width:48px;height:48px;padding:3px}
+  .site-header .brand-logos{gap:5px}
+  .footer-about .brand-logo-narula{width:84px;height:63px}
+  .footer-about .brand-logo-jis{width:63px;height:63px}
+}
+@media(max-width:420px){
+  .site-header .brand-logo-narula{width:59px;height:43px}
+  .site-header .brand-logo-jis{width:43px;height:43px}
+  .nav-actions{display:none}
+  .mobile-language-switch{margin-left:auto}
+  .footer-about .brand{gap:12px;flex-wrap:wrap}
+  .footer-about .brand-label{width:100%}
+}

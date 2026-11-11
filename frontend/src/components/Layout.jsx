@@ -4,9 +4,12 @@ import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-do
 import { ArrowRight, BookOpen, BriefcaseBusiness, CalendarDays, ChevronDown, FileText, Headphones, PhoneCall, LayoutDashboard, LogIn, LogOut, Menu, ShieldCheck, Trophy, Users, X } from 'lucide-react';
 import { useAuth } from '../AuthContext';
 
-export function Brand({ inverse = false }) { const { t } = useLanguage();
-  return <Link to="/" onClick={() => window.scrollTo(0, 0)} className={`brand ${inverse ? 'brand-inverse' : ''}`} aria-label={t("Career & Training home")}>
-    <span className="brand-lockup"><span className="brand-mark">{t("JIS")}<span className="brand-spark">✦</span></span><small className="brand-trust">{t("Narula Educational Trust")}</small></span>
+export function Brand({ inverse = false, onNavigate }) { const { t } = useLanguage();
+  return <Link to="/" onClick={() => { onNavigate?.(); window.scrollTo({ top: 0, behavior: 'auto' }); }} className={`brand ${inverse ? 'brand-inverse' : ''}`} aria-label={t("Career & Training home")}>
+    <span className="brand-logos">
+      <span className="brand-logo-frame brand-logo-jis"><img src="/images/jis-logo.jpg" alt={t("JIS Group Educational Initiatives")} width="56" height="56" /></span>
+      <span className="brand-logo-frame brand-logo-narula"><img src="/images/narula-logo.jpg" alt={t("Narula Educational Trust")} width="160" height="121" /></span>
+    </span>
     <span className="brand-label"><strong>{t("Career & Training")}</strong><small>{t("Recruitment Portal")}</small></span>
   </Link>;
 }
@@ -16,15 +19,15 @@ export function Header() { const { t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
   React.useEffect(() => setOpen(false), [location.pathname]);
-  const links = [['/', 'Home'], ['/opportunities', 'Opportunities'], ['/memorandum', 'Memorandum'], ['/results', 'Selected List']];
+  const links = [['/', 'Home'], ['/opportunities', 'Apply Online'], ['/memorandum', 'Memorandum'], ['/results', 'Selected List']];
   const accountLink = user?.role === 'admin' ? '/admin' : '/dashboard';
   return <>
     <div className="top-strip"><span>{t("Skill Development • Career Opportunities • Transparent Selection")}</span><span><ShieldCheck size={14} />{" " + t("Verified candidate accounts")}</span></div>
     <header className="site-header"><div className="container nav-inner">
-      <Brand />
+      <Brand onNavigate={() => setOpen(false)} />
       <nav className={`nav-links ${open ? 'is-open' : ''}`} aria-label={t("Main navigation")}>
         {links.map(([to, label]) => <NavLink key={to} end={to === '/'} to={to} onClick={() => { if (to === '/') window.scrollTo(0, 0); }} className={({ isActive }) => isActive ? 'nav-active' : ''}>{t(label)}</NavLink>)}
-        <div className="mobile-nav-actions">{user ? <><Link to={accountLink}>{t("My Dashboard")}</Link><button onClick={() => { logout(); navigate('/'); }} className="link-button">{t("Logout")}</button></> : <Link to="/login">{t("Candidate Login")}</Link>}</div>
+        <div className="mobile-nav-actions">{user ? <><Link to={accountLink}>{t("My Dashboard")}</Link><button onClick={() => { logout(); navigate('/'); }} className="link-button">{t("Logout")}</button></> : <><Link to="/login">{t("Candidate Login")}</Link><Link to="/register">{t("Register")}</Link></>}</div>
       </nav>
       <div className="nav-actions"><LanguageToggle compact />{user ? <><Link className="nav-dashboard" to={accountLink}><LayoutDashboard size={17} />{" " + t("Dashboard")}</Link><button className="icon-button logout-button" title={t("Sign out")} onClick={() => { logout(); navigate('/'); }}><LogOut size={19} /></button></> : <><Link className="login-link" to="/login"><LogIn size={16} />{" " + t("Login")}</Link><Link className="btn btn-gold btn-sm" to="/register">{t("Register") + " "}<ArrowRight size={15} /></Link></>}</div>
       <div className="mobile-language-switch"><LanguageToggle compact /></div>
@@ -40,8 +43,8 @@ const telephoneHref = value => `tel:${displayedPhone(value).replace(/[^0-9+]/g, 
 export function Footer() {
   const { t } = useLanguage();
   const projectPhones = [
-    import.meta.env.VITE_PROJECT_CONTACT_PHONE_1 ?? '7044414004',
-    import.meta.env.VITE_PROJECT_CONTACT_PHONE_2 ?? '8777561989',
+    import.meta.env.VITE_PROJECT_CONTACT_PHONE_1 ?? '8777561989',
+    import.meta.env.VITE_PROJECT_CONTACT_PHONE_2 ?? '7044414004',
   ].map(displayedPhone).filter(Boolean);
   const technicalPhone = displayedPhone(import.meta.env.VITE_TECHNICAL_CONTACT_PHONE);
 
@@ -54,7 +57,7 @@ export function Footer() {
       </div>
       <div><h4>{t("Explore")}</h4><Link to="/opportunities">{t("Open opportunities")}</Link><Link to="/memorandum">{t("Memorandum / summary")}</Link><Link to="/results">{t("Selection list")}</Link></div>
       <div><h4>{t("Candidate Services")}</h4><Link to="/register">{t("New registration")}</Link><Link to="/login">{t("Candidate login")}</Link><Link to="/dashboard">{t("Track application")}</Link></div>
-      <div><h4>{t("Programme reference")}</h4><p>{t("Guest Service Associate")}<br />{t("Food & Beverage / Hotel Management")}</p><p>{t("Training duration: 4 months")}<br />{t("Recruitment controlled by admin dates")}</p><p className="footer-scheme"><strong>DDU-GKY</strong> — {t("Deen Dayal Upadhyaya Grameen Kaushalya Yojana")}</p></div>
+      <div><h4>{t("Programme reference")}</h4><p>{t("Deen Dayal Upadhyaya Grameen Kaushalya Yojana (DDU-GKY)")}</p><p>{t("Training duration: 4 months.")}<br />{t("Recruitment controlled by admin dates")}</p><p><strong>{t("Training Centre")}</strong><br />{t("Narula Educational Trust")}<br />{t("56, Jessore Road, Patipukur, Kolkata – 700048")}</p><p className="footer-scheme"><strong>DDU-GKY</strong> — {t("Deen Dayal Upadhyaya Grameen Kaushalya Yojana")}</p></div>
     </div>
     <div className="container footer-contacts" aria-label={t("Contact information")}>
       <div className="footer-contact-inline">
