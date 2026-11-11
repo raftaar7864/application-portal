@@ -65,6 +65,7 @@ app.use(cors({ origin: (process.env.CLIENT_URL || 'http://localhost:5173').split
 app.use(express.json({ limit: '100kb' }));
 app.use('/api', (_req, res, next) => { res.set('Cache-Control', 'no-store'); next(); });
 app.use(morgan('dev'));
+app.set("trust proxy", 1);
 const authLimit = rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHeaders: 'draft-7', legacyHeaders: false });
 app.use('/api/auth', authLimit);
 
