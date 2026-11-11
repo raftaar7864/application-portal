@@ -23,7 +23,7 @@ export function OpportunityCard({ c }) { const { t } = useLanguage();
 export function OutreachAttribution({ compact = false }) { const { t } = useLanguage();
   return <section className={`section outreach-section ${compact ? 'outreach-compact' : ''}`} aria-label={t('Outreach initiative')}>
     <div className="container"><div className="outreach-card">
-      <img src="/images/mla-office.jpeg" alt="Supplied photograph of Shri Ashim Kumar Biswas at his MLA office" loading="lazy" />
+      <img src="/images/mla-office.png" alt="Supplied photograph of Shri Ashim Kumar Biswas at his MLA office" loading="lazy" />
       <div className="outreach-copy"><span className="eyebrow">{t('Outreach initiative')}</span>
         <h2>{t('This training opportunity is being publicized through the initiative of')}</h2>
         <h3>{t('Shri. Ashim Kumar Biswas')}</h3>
