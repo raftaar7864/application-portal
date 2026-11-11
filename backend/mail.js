@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const { sendWithGmailApi } = require('./gmailApi');
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[ch]);
 const portal = () => (process.env.CLIENT_URL || 'http://localhost:5173').split(',')[0].trim().replace(/\/$/, '') + '/dashboard';
 const org = () => process.env.RECRUITMENT_ORG_NAME || 'JIS Group - Narula Educational Trust';
@@ -32,7 +33,17 @@ async function sendWithResend({ to, subject, html, attachments }) {
   return true;
 }
 async function sendMail({ to, subject, html, attachments = [], devCode }) {
-  if (process.env.RESEND_API_KEY) return sendWithResend({to, subject, html, attachments});
+  const provider = (process.env.EMAIL_PROVIDER || '').trim().toLowerCase();
+  // Explicit provider ensures Railway Hobby never silently falls back to blocked SMTP.
+  if (provider === 'gmail_api' || (!provider && process.env.GMAIL_REFRESH_TOKEN)) {
+    return sendWithGmailApi({ to, subject, html, attachments });
+  }
+  if (provider === 'resend' || (!provider && process.env.RESEND_API_KEY)) {
+    return sendWithResend({ to, subject, html, attachments });
+  }
+  if (provider && provider !== 'smtp') {
+    throw new Error('Unsupported EMAIL_PROVIDER. Use gmail_api, smtp or resend.');
+  }
   if (!process.env.SMTP_HOST) {
     if (process.env.NODE_ENV === 'production') throw new Error('SMTP is not configured on the server.');
     if (devCode) console.log(`[DEVELOPMENT ONLY] Email OTP for ${to}: ${devCode}`);
