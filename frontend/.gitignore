@@ -1,0 +1,12 @@
+# Never commit passwords or secrets
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+coverage/
+*.log
+.DS_Store
+# Candidate / uploaded files
+uploads/
+storage/
